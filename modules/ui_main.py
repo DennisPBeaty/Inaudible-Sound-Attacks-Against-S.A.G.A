@@ -1104,12 +1104,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6.addWidget(self.record)
 
-        self.stop_record = QPushButton(self.new_page)
-        self.stop_record.setObjectName(u"stop_record")
-        self.stop_record.setMaximumSize(QSize(100, 100))
-        self.stop_record.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-media-stop.png);background-position: center;background-color: #4f5077;background-repeat:no-repeat")
-
-        self.horizontalLayout_6.addWidget(self.stop_record)
+        
 
         self.play_back = QPushButton(self.new_page)
         self.play_back.setObjectName(u"play_back")
@@ -1340,7 +1335,6 @@ class Ui_MainWindow(object):
         self.emergency.setText(QCoreApplication.translate("MainWindow", u"Call 911", None))
         self.joke.setText(QCoreApplication.translate("MainWindow", u"Tell Me a Joke", None))
         self.record.setText("")
-        self.stop_record.setText("")
         self.play_back.setText("")
         self.btn_message.setText(QCoreApplication.translate("MainWindow", u"Message", None))
         self.btn_print.setText(QCoreApplication.translate("MainWindow", u"Print", None))

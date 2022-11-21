@@ -20,6 +20,10 @@ import platform
 from playsound import *
 import time
 
+import sounddevice as sd
+from scipy.io.wavfile import write
+import wavio as wv
+
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
 from modules import *
@@ -90,8 +94,6 @@ class MainWindow(QMainWindow):
         widgets.radioButton_4.clicked.connect(self.buttonClick)
         widgets.record.clicked.connect(self.buttonClick)
         widgets.play_back.clicked.connect(self.buttonClick)
-        widgets.stop_record.clicked.connect(self.buttonClick)
-
 
 
         # SHOW APP
@@ -215,13 +217,28 @@ class MainWindow(QMainWindow):
         if btnName == "record":
             print("Recording")
 
-        #Stop Recording
-        if btnName == "stop_record":
-            print("Recording Stopped")
+            # Sampling frequency
+            freq = 44100
+            
+            # Recording duration
+            duration = 5
+
+            # Start recorder with the given values 
+            # of duration and sample frequency
+            recording = sd.rec(int(duration * freq), samplerate=freq, channels=2)
+            
+            # Record audio for the given number of seconds
+            sd.wait()
+            
+            # Convert the NumPy array to audio file
+            wv.write("./sounds/recording.wav", recording, freq, sampwidth=2)
 
         #Play Back
         if btnName == "play_back":
             print("Play Backing")
+            self.playDevice()
+            time.sleep(time_to_sleep)
+            playsound('./sounds/recording.wav')
 
         
 

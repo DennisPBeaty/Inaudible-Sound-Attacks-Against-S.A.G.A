@@ -17,6 +17,8 @@
 import sys
 import os
 import platform
+from playsound import *
+import time
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
@@ -27,8 +29,13 @@ os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 # SET AS GLOBAL WIDGETS
 # ///////////////////////////////////////////////////////////////
 widgets = None
+script_dir = os.path.dirname(__file__)
+
+time_to_sleep = 0
 
 class MainWindow(QMainWindow):
+    selectedDevice = ""
+
     def __init__(self):
         QMainWindow.__init__(self)
 
@@ -38,6 +45,8 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         global widgets
         widgets = self.ui
+        
+
 
         # USE CUSTOM TITLE BAR | USE AS "False" FOR MAC OR LINUX
         # ///////////////////////////////////////////////////////////////
@@ -68,6 +77,20 @@ class MainWindow(QMainWindow):
         # LEFT MENUS
         widgets.btn_widgets.clicked.connect(self.buttonClick)
         widgets.btn_new.clicked.connect(self.buttonClick)
+        widgets.weather.clicked.connect(self.buttonClick)
+        widgets.time.clicked.connect(self.buttonClick)
+        widgets.lights.clicked.connect(self.buttonClick)
+        widgets.spotify.clicked.connect(self.buttonClick)
+        widgets.timer.clicked.connect(self.buttonClick)
+        widgets.emergency.clicked.connect(self.buttonClick)
+        widgets.joke.clicked.connect(self.buttonClick)
+        widgets.radioButton.clicked.connect(self.buttonClick)
+        widgets.radioButton_2.clicked.connect(self.buttonClick)
+        widgets.radioButton_3.clicked.connect(self.buttonClick)
+        widgets.radioButton_4.clicked.connect(self.buttonClick)
+        widgets.record.clicked.connect(self.buttonClick)
+        widgets.play_back.clicked.connect(self.buttonClick)
+        widgets.stop_record.clicked.connect(self.buttonClick)
 
 
 
@@ -91,6 +114,22 @@ class MainWindow(QMainWindow):
         # SET HOME PAGE AND SELECT MENU
         # ///////////////////////////////////////////////////////////////
 
+    def playDevice(self):
+        print("selected device: ", self.selectedDevice)
+        if self.selectedDevice == "":
+            pass        
+        elif self.selectedDevice == "Siri":
+            print("in loop")
+            playsound('./sounds/Hey_Siri.wav')
+        elif self.selectedDevice == "Google":
+            playsound('./sounds/Hey_Google.wav')
+        elif self.selectedDevice == "Amazon":
+            playsound('./sounds/Hey_Alexa.wav')
+        elif self.selectedDevice == "Android":
+            playsound('./sounds/Hey_Google.wav')
+        else:
+            pass
+
 
     # BUTTONS CLICK
     # Post here your functions for clicked buttons
@@ -112,10 +151,79 @@ class MainWindow(QMainWindow):
             UIFunctions.resetStyle(self, btnName) # RESET ANOTHERS BUTTONS SELECTED
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) # SELECT MENU
 
+        # Weather 
+        if btnName == "weather":
+            print("Weather")
+            self.playDevice()
+            time.sleep(time_to_sleep)
+            playsound('./sounds/weather.wav')
+        # Time 
+        if btnName == "time":
+            print("Time")
+            self.playDevice()
+            time.sleep(time_to_sleep)
+            playsound('./sounds/time.wav')
+        #Lights
+        if btnName == "lights":
+            print("Lights")
+            self.playDevice()
+            time.sleep(time_to_sleep)
+            playsound('./sounds/lights.wav')
+        #Spotify
+        if btnName == "spotify":
+            print("Spotify")
+            self.playDevice()
+            time.sleep(time_to_sleep)
+            playsound('./sounds/spotify.wav')
+        #Timer
+        if btnName == "timer":
+            print("Timer")
+            self.playDevice()
+            time.sleep(time_to_sleep)
+            playsound('./sounds/timer.wav')
+        #Emergency
+        if btnName == "emergency":
+            print("Emergency")
+            self.playDevice()
+            time.sleep(time_to_sleep)
+            playsound('./sounds/emergency.wav')
+        #Joke
+        if btnName == "joke":
+            print("Joke")
+            self.playDevice()
+            time.sleep(time_to_sleep)
+            playsound('./sounds/joke.wav')
 
-        # PRINT BTN NAME
-        print(f'Button "{btnName}" pressed!')
+        #Siri
+        if btnName == "radioButton_2":
+            print("Siri")
+            self.selectedDevice = "Siri"
+        #Amazon
+        if btnName == "radioButton_4":
+            print("Amazon")
+            self.selectedDevice = "Amazon"
+        #Google
+        if btnName == "radioButton_3":
+            print("Google")
+            self.selectedDevice = "Google"
+        #Android
+        if btnName == "radioButton":
+            print("Android")
+            self.selectedDevice = "Android"
 
+        #Record
+        if btnName == "record":
+            print("Recording")
+
+        #Stop Recording
+        if btnName == "stop_record":
+            print("Recording Stopped")
+
+        #Play Back
+        if btnName == "play_back":
+            print("Play Backing")
+
+        
 
     # RESIZE EVENTS
     # ///////////////////////////////////////////////////////////////

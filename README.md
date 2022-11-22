@@ -1,3 +1,8 @@
+"This is a free pyside 6 ui file that is open source and was used in order to create the GUI elements of this project. The orginal creditor is accredited below.
+ The included files for this UI are merely a template and were altererd further to best represent our use case for our application."
+-Dennis Preston Beaty, Kyung Min Han, and Chris Lee
+
+
 # PyDracula - Modern GUI PySide6 / PyQt6
 # 
 

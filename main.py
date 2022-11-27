@@ -266,14 +266,11 @@ class MainWindow(QMainWindow):
             sd.wait()
             
             # Convert the NumPy array to audio file
-            wv.write("./sounds/recording.wav", recording, freq, sampwidth=2)
+            wv.write("./sounds/result.wav", recording, freq, sampwidth=2)
 
         #Play Back
         if btnName == "play_back":
-            print("Play Backing")
-            self.playDevice()
-            time.sleep(time_to_sleep)
-            playsound('./sounds/recording.wav')
+            self.createCSV("playback.csv")
 
         
 

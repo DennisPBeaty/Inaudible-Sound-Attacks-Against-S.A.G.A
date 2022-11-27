@@ -19,10 +19,14 @@ import os
 import platform
 from playsound import *
 import time
+from pydub import AudioSegment
 
 import sounddevice as sd
 from scipy.io.wavfile import write
 import wavio as wv
+import os.path
+from scipy.io import wavfile
+import pandas as pd
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
@@ -117,20 +121,23 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
 
     def playDevice(self):
-        print("selected device: ", self.selectedDevice)
-        if self.selectedDevice == "":
-            pass        
-        elif self.selectedDevice == "Siri":
-            print("in loop")
-            playsound('./sounds/Hey_Siri.wav')
-        elif self.selectedDevice == "Google":
-            playsound('./sounds/Hey_Google.wav')
-        elif self.selectedDevice == "Amazon":
-            playsound('./sounds/Hey_Alexa.wav')
-        elif self.selectedDevice == "Android":
-            playsound('./sounds/Hey_Google.wav')
-        else:
-            pass
+        #Create Wave File
+        if(self.selectedDevice == "Siri"):
+            return AudioSegment.from_wav('./sounds/Hey_Siri.wav')
+        elif(self.selectedDevice == "Google"):
+            return AudioSegment.from_wav('./sounds/Hey_Google.wav')
+        elif(self.selectedDevice == "Amazon"):
+            return AudioSegment.from_wav('./sounds/Hey_Alexa.wav')
+        elif(self.selectedDevice == "Android"):
+            return AudioSegment.from_wav('./sounds/Hey_Google.wav')
+        else:   
+            return AudioSegment.from_wav('./sounds/Hey_Siri.wav')
+
+    def createCSV(self, input):
+        samrate, data = wavfile.read('./sounds/result.wav')
+        wavData = pd.DataFrame(data)
+        wavData = wavData.T
+        wavData.to_csv(input, mode='w')
 
 
     # BUTTONS CLICK
@@ -155,46 +162,74 @@ class MainWindow(QMainWindow):
 
         # Weather 
         if btnName == "weather":
-            print("Weather")
-            self.playDevice()
-            time.sleep(time_to_sleep)
-            playsound('./sounds/weather.wav')
+            #Create Wave File
+            sound1 = self.playDevice()
+            sound2 = AudioSegment.from_wav("./sounds/weather.wav")
+            combined_sounds = sound1 + sound2
+            combined_sounds.export("./sounds/result.wav", format="wav")
+
+            #Create CSV file
+            self.createCSV("weather.csv")
         # Time 
         if btnName == "time":
-            print("Time")
-            self.playDevice()
-            time.sleep(time_to_sleep)
-            playsound('./sounds/time.wav')
+            #Create Wave File
+            sound1 = self.playDevice()
+            sound2 = AudioSegment.from_wav("./sounds/time.wav")
+            combined_sounds = sound1 + sound2
+            combined_sounds.export("./sounds/result.wav", format="wav")
+
+            #Create CSV file
+            self.createCSV("time.csv")
         #Lights
         if btnName == "lights":
-            print("Lights")
-            self.playDevice()
-            time.sleep(time_to_sleep)
-            playsound('./sounds/lights.wav')
+            #Create Wave File
+            sound1 = self.playDevice()
+            sound2 = AudioSegment.from_wav("./sounds/lights.wav")
+            combined_sounds = sound1 + sound2
+            combined_sounds.export("./sounds/result.wav", format="wav")
+
+            #Create CSV file
+            self.createCSV("lights.csv")
         #Spotify
         if btnName == "spotify":
-            print("Spotify")
-            self.playDevice()
-            time.sleep(time_to_sleep)
-            playsound('./sounds/spotify.wav')
+            #Create Wave File
+            sound1 = self.playDevice()
+            sound2 = AudioSegment.from_wav("./sounds/spotify.wav")
+            combined_sounds = sound1 + sound2
+            combined_sounds.export("./sounds/result.wav", format="wav")
+
+            #Create CSV file
+            self.createCSV("spotify.csv")
         #Timer
         if btnName == "timer":
-            print("Timer")
-            self.playDevice()
-            time.sleep(time_to_sleep)
-            playsound('./sounds/timer.wav')
+            #Create Wave File
+            sound1 = self.playDevice()
+            sound2 = AudioSegment.from_wav("./sounds/timer.wav")
+            combined_sounds = sound1 + sound2
+            combined_sounds.export("./sounds/result.wav", format="wav")
+
+            #Create CSV file
+            self.createCSV("timer.csv")
         #Emergency
         if btnName == "emergency":
-            print("Emergency")
-            self.playDevice()
-            time.sleep(time_to_sleep)
-            playsound('./sounds/emergency.wav')
+            #Create Wave File
+            sound1 = self.playDevice()
+            sound2 = AudioSegment.from_wav("./sounds/emergency.wav")
+            combined_sounds = sound1 + sound2
+            combined_sounds.export("./sounds/result.wav", format="wav")
+
+            #Create CSV file
+            self.createCSV("emergency.csv")
         #Joke
         if btnName == "joke":
-            print("Joke")
-            self.playDevice()
-            time.sleep(time_to_sleep)
-            playsound('./sounds/joke.wav')
+            #Create Wave File
+            sound1 = self.playDevice()
+            sound2 = AudioSegment.from_wav("./sounds/joke.wav")
+            combined_sounds = sound1 + sound2
+            combined_sounds.export("./sounds/result.wav", format="wav")
+
+            #Create CSV file
+            self.createCSV("joke.csv")
 
         #Siri
         if btnName == "radioButton_2":

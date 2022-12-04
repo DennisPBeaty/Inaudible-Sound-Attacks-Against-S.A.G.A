@@ -136,7 +136,6 @@ class MainWindow(QMainWindow):
     def createCSV(self, input):
         samrate, data = wavfile.read('./sounds/result.wav')
         wavData = pd.DataFrame(data)
-        wavData = wavData.T
         wavData.to_csv(input, mode='w')
 
 

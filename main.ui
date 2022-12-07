@@ -2250,7 +2250,7 @@ font-weight : bold ;  display: inline-block;
                    <string notr="true"/>
                   </property>
                   <property name="text">
-                   <string>By: Preston Beaty, Kyung Min Han, and Chris Lee</string>
+                   <string>App Tutorial: https://dennispbeaty.github.io/Site-For-Mobile-Embedded/</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

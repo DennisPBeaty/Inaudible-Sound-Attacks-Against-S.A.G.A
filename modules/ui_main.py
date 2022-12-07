@@ -1343,6 +1343,7 @@ class Ui_MainWindow(object):
         self.radioButton_4.setText(QCoreApplication.translate("MainWindow", u"Amazon", None))
         self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"Google", None))
         self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Android", None))
-        self.creditsLabel.setText(QCoreApplication.translate("MainWindow", u"By: Preston Beaty, Kyung Min Han, and Chris Lee", None))
+        self.creditsLabel.setText(QCoreApplication.translate("MainWindow", u'''<a href='https://dennispbeaty.github.io/Site-For-Mobile-Embedded/'>App Tutorial</a>''', None))
+        self.creditsLabel.setOpenExternalLinks(True)
     # retranslateUi
 

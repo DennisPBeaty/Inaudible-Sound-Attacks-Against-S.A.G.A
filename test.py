@@ -4,8 +4,8 @@ from scipy.io import wavfile
 import pandas as pd
 
 def createCSV(input):
-    samrate, data = wavfile.read('./sounds/weather.wav')
+    samrate, data = wavfile.read('./sounds/result_24k.wav')
     wavData = pd.DataFrame(data)
     wavData.to_csv(input, mode='w')
 
-createCSV("result.csv")
+createCSV("result_24k.csv")
